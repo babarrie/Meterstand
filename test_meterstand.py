@@ -10,6 +10,3 @@ class testMeterstand(unittest.TestCase):
     def tearDown(self) -> None:
         return super().tearDown()
     
-    def add_gas(self):
-        meter = Meterstand()
-        meter.gasmeter(100.0)

@@ -1,19 +1,26 @@
 """Python app om meterstanden op te volgen via manuele input"""
 
-import csv
+import pandas as pd
+from datetime import date
 
-def gasmeter():
-    gas = 0.0
-    gas = float(input())
+from pandas.core.frame import DataFrame
 
-def watermeter():
-    water = 0.0
-    water = float(input())
+HEADER = ['datum','gas','water','electriciteit']
+FILE_NAME = 'meterstanden.csv'
 
-def elemeter():
-    ele = 0.0
-    ele = float(input())
-
-def add_row(gas, water, ele):
-    rij = [gas, water, ele]
-    csv.writer(rij)
+def ingave():
+    datum = input("Datum ingave:")
+    gas = float(input("Gas:"))
+    water = float(input("Water:"))
+    ele = float(input("Electriciteit:"))
+    df = pd.DataFrame(
+        {
+            "Datum": [datum],
+            "Gas": [gas],
+            "Water": [water],
+            "Electriciteit": [ele]
+        }
+    )
+    df.to_csv(FILE_NAME,mode='a', index=False)
+    
+ingave()
