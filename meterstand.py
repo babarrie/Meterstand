@@ -3,24 +3,37 @@
 import pandas as pd
 from datetime import date
 
-from pandas.core.frame import DataFrame
 
-HEADER = ['datum','gas','water','electriciteit']
+HEADER = ['Datum','Gas','Water','Electriciteit']
 FILE_NAME = 'meterstanden.csv'
 
+def main():
+
+    ingave()
+    return "Done"
+
 def ingave():
-    datum = input("Datum ingave:")
-    gas = float(input("Gas:"))
-    water = float(input("Water:"))
-    ele = float(input("Electriciteit:"))
     df = pd.DataFrame(
         {
-            "Datum": [datum],
-            "Gas": [gas],
-            "Water": [water],
-            "Electriciteit": [ele]
+            "Datum": [],
+            "Gas": [],
+            "Water": [],
+            "Electriciteit": []
         }
     )
+    n = 0
+    datum = date.today()
+    while n != 5:
+        datum = input("Datum ingave:")
+        gas = float(input("Gas:"))
+        water = float(input("Water:"))
+        ele = float(input("Electriciteit:"))
+        df = df.append({"Datum": [datum], "Gas": [gas], "Water": [water], "Electriciteit": [ele]},ignore_index=True)
+        n = n + 1
+        print(n)
     df.to_csv(FILE_NAME,mode='a', index=False)
+
     
-ingave()
+
+if __name__ == "__main__":
+    main()

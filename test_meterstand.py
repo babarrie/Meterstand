@@ -1,6 +1,6 @@
 """Meterstand unittest"""
 import unittest
-import Meterstand
+from Meterstand import meterstand
 
 class testMeterstand(unittest.TestCase):
 
@@ -10,3 +10,5 @@ class testMeterstand(unittest.TestCase):
     def tearDown(self) -> None:
         return super().tearDown()
     
+    def testIngave(self):
+        meterstand.ingave()
