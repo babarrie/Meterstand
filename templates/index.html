@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+  <title>Meterstand</title>
+  <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/style.css') }}"> 
+</head>
+ 
+<div class="page">
+    <h1>Meterstanden</h1>
+      <div class="table">
+        {% for table in tables %}
+            {{titles[loop.index]}}
+            {{ table|safe }}
+        {% endfor %}
+      </div>
+</div>

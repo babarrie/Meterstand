@@ -3,18 +3,25 @@
 import pandas as pd
 from flask import *
 from datetime import date
+import matplotlib.pyplot as plt
 
 app = Flask(__name__)
 
 HEADER = ['Datum','Gas','Water','Electriciteit']
-FILE_NAME = 'meterstanden.csv'
+FILE_NAME = '~/Projects/Meterstand/meterstanden.csv'
 
 @app.route("/")
 def show_readings():
-    data = pd.read_csv('meterstanden.csv',";")
-    data.set_index(HEADER, inplace=True)
-    data.index.name=None
-    return render_template('meterstand.html', table=[data.to_html(index=True)])
+    data = pd.read_csv(FILE_NAME,";")
+    return render_template('index.html', tables=[data.to_html(header=True, index=False, table_id="table")], titles=[data.columns.values])
+
+@app.route("/charts")
+def show_graph():
+    plt.plot()
+    plt.title()
+    plt.savefig('static/img/graph.png')
+    return render_template('charts.html',url='/static/img/graph.png' )
+
 
 if __name__ == "__main__":
     app.run(debug=True)
